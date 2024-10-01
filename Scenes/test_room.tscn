@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://crsyvguo1vuto"]
+
+[ext_resource type="Texture2D" uid="uid://clp6qil3d5m3b" path="res://temp_graphics/temp_moon_bg.PNG" id="1_nmjqg"]
+[ext_resource type="PackedScene" uid="uid://bhvy2yu3bshrd" path="res://Scenes/player.tscn" id="2_xoonl"]
+
+[node name="TestRoom" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(578, 325.5)
+scale = Vector2(1.82484, 1.7246)
+texture = ExtResource("1_nmjqg")
+
+[node name="Player" parent="." instance=ExtResource("2_xoonl")]
+position = Vector2(114, 425)
