@@ -6,9 +6,9 @@
 [node name="TestRoom" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(578, 325.5)
-scale = Vector2(1.82484, 1.7246)
+position = Vector2(647, 365.5)
+scale = Vector2(2.08599, 1.9385)
 texture = ExtResource("1_nmjqg")
 
 [node name="Player" parent="." instance=ExtResource("2_xoonl")]
-position = Vector2(114, 425)
+position = Vector2(85, 504)
