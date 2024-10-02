@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(float) -> void:
 	#if Input.is_action_pressed("ui_right"):
 		#position += Vector2(150, 0) * delta
 	#if Input.is_action_pressed("ui_left"):
