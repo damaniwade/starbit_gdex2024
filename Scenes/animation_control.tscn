@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf486v3wj7e4l"]
+
+[ext_resource type="Script" path="res://Scenes/Code/animation_control.gd" id="1_g14of"]
+
+[node name="animation_control" type="Node"]
+script = ExtResource("1_g14of")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://crsyvguo1vuto"]
 
 [ext_resource type="Texture2D" uid="uid://clp6qil3d5m3b" path="res://temp_graphics/temp_moon_bg.PNG" id="1_nmjqg"]
-[ext_resource type="PackedScene" uid="uid://bhvy2yu3bshrd" path="res://Scenes/player.tscn" id="2_xoonl"]
+[ext_resource type="PackedScene" uid="uid://dh6pxqob5ffdk" path="res://Scenes/player.tscn" id="2_xoonl"]
 [ext_resource type="Texture2D" uid="uid://bvxt3cms7mubk" path="res://icon.svg" id="3_qtw0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6po50"]
@@ -14,27 +14,26 @@ position = Vector2(647, 365.5)
 scale = Vector2(2.08599, 1.9385)
 texture = ExtResource("1_nmjqg")
 
-[node name="Player" parent="." instance=ExtResource("2_xoonl")]
-position = Vector2(85, 504)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="MainGround" type="StaticBody2D" parent="."]
 position = Vector2(620, 735)
 scale = Vector2(12.3437, 1)
 
-[node name="Ground" type="Sprite2D" parent="StaticBody2D"]
+[node name="Ground" type="Sprite2D" parent="MainGround"]
 texture = ExtResource("3_qtw0l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainGround"]
 position = Vector2(0.121521, 2)
 shape = SubResource("RectangleShape2D_6po50")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(1488, 576)
 scale = Vector2(12.3437, 0.52)
 
-[node name="Ground" type="Sprite2D" parent="StaticBody2D2"]
+[node name="Ground" type="Sprite2D" parent="Platform"]
 texture = ExtResource("3_qtw0l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 position = Vector2(0.121521, 2)
 shape = SubResource("RectangleShape2D_6po50")
+
+[node name="Player" parent="." instance=ExtResource("2_xoonl")]
