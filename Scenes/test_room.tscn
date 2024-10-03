@@ -38,6 +38,7 @@ position = Vector2(0.121521, 2)
 shape = SubResource("RectangleShape2D_6po50")
 
 [node name="Player" parent="." instance=ExtResource("2_xoonl")]
+position = Vector2(105, 451)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
