@@ -10,6 +10,7 @@ func _physics_process(delta: float) -> void:
 	input_control.jump_handle(self, input_control.get_jump_input())
 	animation_control.move_animation(input_control.x_movement)
 	animation_control.jump_animation(input_control.jumped, gravity_control.is_falling)
+	animation_control.dash_animation(input_control.is_dashing)
 	
 	
 	move_and_slide()

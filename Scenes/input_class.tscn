@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://vk7rwt2dmxsl"]
+[gd_scene load_steps=2 format=3 uid="uid://vk7rwt2dmxsl"]
 
 [ext_resource type="Script" path="res://Scenes/Code/input_class.gd" id="1_a1fyv"]
-[ext_resource type="PackedScene" uid="uid://cf5ihfhv12xxi" path="res://Scenes/dash_control.tscn" id="2_7tt50"]
 
-[node name="input_class" type="Node" node_paths=PackedStringArray("dash_control")]
+[node name="input_class" type="Node"]
 script = ExtResource("1_a1fyv")
-dash_control = NodePath("dash_control")
-
-[node name="dash_control" parent="." instance=ExtResource("2_7tt50")]

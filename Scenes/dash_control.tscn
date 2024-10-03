@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf5ihfhv12xxi"]
+[gd_scene load_steps=2 format=3 uid="uid://iwe8c66iu4js"]
 
-[ext_resource type="Script" path="res://Scenes/Code/dash_control.gd" id="1_54dr6"]
+[sub_resource type="GDScript" id="GDScript_tvey7"]
+script/source = "class_name Dash_Handle
+extends Node
+
+@export_subgroup(\"ControlVariables\")
+@export var dash_speed: float = 1500.0
+@export var dash_distance: float = 1.0
+
+var dash_ability: bool = true
+var is_dashing: bool = false
+"
 
 [node name="dash_control" type="Node"]
-script = ExtResource("1_54dr6")
+script = SubResource("GDScript_tvey7")

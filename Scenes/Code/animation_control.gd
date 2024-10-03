@@ -29,3 +29,7 @@ func jump_animation(jumping: bool, falling: bool) -> void:
 		sprite.play("Jump")
 	elif falling:
 		sprite.play("Fall")
+
+func dash_animation(dashing: bool) -> void:
+	if dashing:
+		sprite.play("Dash")

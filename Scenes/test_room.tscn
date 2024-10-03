@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://crsyvguo1vuto"]
+[gd_scene load_steps=6 format=3 uid="uid://crsyvguo1vuto"]
 
 [ext_resource type="Texture2D" uid="uid://clp6qil3d5m3b" path="res://temp_graphics/temp_moon_bg.PNG" id="1_nmjqg"]
 [ext_resource type="PackedScene" uid="uid://dh6pxqob5ffdk" path="res://Scenes/player.tscn" id="2_xoonl"]
 [ext_resource type="Texture2D" uid="uid://bvxt3cms7mubk" path="res://icon.svg" id="3_qtw0l"]
+[ext_resource type="PackedScene" uid="uid://cv2fddhyfdp7e" path="res://Scenes/pause_screen.tscn" id="4_d38vh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6po50"]
 size = Vector2(128.567, 130)
@@ -37,3 +38,7 @@ position = Vector2(0.121521, 2)
 shape = SubResource("RectangleShape2D_6po50")
 
 [node name="Player" parent="." instance=ExtResource("2_xoonl")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause Screen" parent="CanvasLayer" instance=ExtResource("4_d38vh")]
