@@ -4,8 +4,8 @@ extends Node
 @export_subgroup("ControlVariables")
 @export var speed: float = 300.0
 @export var jump_velocity: float = -500.0
-@export var dash_speed: float = 30000.0
-@export var dash_distance: float = 1.0
+@export var dash_speed: float = 20000.0
+@export var dash_distance: float = 0.3
 
 var dash_ability: bool = true
 var is_dashing: bool = false
@@ -29,6 +29,7 @@ func movement_handle(body: CharacterBody2D, delta: float) -> void:
 		body.velocity.x = dash_speed * delta
 		dash_ability = false
 		is_dashing = true
+		
 		await(get_tree().create_timer(dash_distance)).timeout
 		is_dashing = false
 		dash_ability = true
