@@ -12,15 +12,18 @@ func _physics_process(delta: float) -> void:
 	if self.is_underwater == false:
 		grounded_gravity_control.handle_gravity(self, delta)
 		grounded_input_control.movement_handle(self, grounded_input_control.x_movement)
-		grounded_input_control.jump_handle(self, grounded_input_control.get_jump_input())
+		if self.is_on_floor():
+			grounded_input_control.jump_handle(self, grounded_input_control.get_jump_input())
+		else:pass
 		animation_control.move_animation(grounded_input_control.x_movement)
 		animation_control.jump_animation(grounded_input_control.jumped, grounded_gravity_control.is_falling)
 		animation_control.dash_animation(grounded_input_control.is_dashing)
 	
 	elif self.is_underwater == true:
 		swimming_gravity_control.handle_gravity(self, delta)
-		swimming_input_control.swim_handle(self, swimming_input_control.x_movement, swimming_input_control.y_movement)
-		swimming_input_control.boat_handle(self, swimming_input_control.x_movement, swimming_input_control.y_movement)
+		swimming_input_control.swim_handle(self, swimming_input_control.x_movement)
+		swimming_input_control.swimup_handle(self, swimming_input_control.get_jump_input())
+		swimming_input_control.boat_handle(self, swimming_input_control.x_movement)
 	
 	
 	move_and_slide()

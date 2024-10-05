@@ -35,7 +35,7 @@ func movement_handle(body: CharacterBody2D, delta: float) -> void:
 		dash_ability = true
 
 func jump_handle(body: CharacterBody2D, jump_delta: float) -> void:
-	if jump_delta and body.is_on_floor():
+	if jump_delta:
 		body.velocity.y = jump_velocity
 	
-	jumped = body.velocity.y < 0 and not body.is_on_floor() 
+	jumped = body.velocity.y < 0 and not body.is_on_floor()

@@ -4,10 +4,10 @@ extends Node
 @export_subgroup("ControlVariables")
 @export var gravity: float = 400.0
 
-var is_swimming: bool = false
+var is_falling: bool = false
 
 func handle_gravity(body: CharacterBody2D, delta: float) -> void:
-	if not body.is_on_floor():
+	if !body.is_on_floor() and body.velocity.y < 300:
 		body.velocity.y += gravity * delta
 		
-	is_swimming = body.velocity.y > 0 and not body.is_on_floor()
+	is_falling = body.velocity.y > 0 and not body.is_on_floor()
