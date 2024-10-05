@@ -31,6 +31,10 @@ func swim_handle(body: CharacterBody2D, delta: float) -> void:
 		body.velocity.x = dash_speed * delta
 		dash_ability = false
 		is_dashing = true
+		if body.velocity.x > 0:
+			$"../DashParticlesRight".emitting = true
+		else:
+			$"../DashParticlesLeft".emitting = true
 		
 		await(get_tree().create_timer(dash_distance)).timeout
 		is_dashing = false

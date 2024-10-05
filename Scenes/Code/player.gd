@@ -28,8 +28,15 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _on_area_2d_body_entered(_body):
-	self.is_underwater = true
-
-func _on_area_2d_body_exited(_body):
-	self.is_underwater = false
+func _on_area_2d_body_entered(body: Node2D):
+	if body == self:
+		self.is_underwater = true
+		$PurpleParticles.emitting = true
+		$PinkParticles.emitting = true
+		$BlueParticles.emitting = true
+func _on_area_2d_body_exited(body: Node2D):
+	if body == self:
+		self.is_underwater = false
+		$PurpleParticles.emitting = true
+		$PinkParticles.emitting = true
+		$BlueParticles.emitting = true
