@@ -1,4 +1,4 @@
-class_name Input_Handle
+class_name Ground_Input_Handle
 extends Node
 
 @export_subgroup("ControlVariables")

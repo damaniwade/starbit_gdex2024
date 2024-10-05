@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dh6pxqob5ffdk"]
+[gd_scene load_steps=15 format=3 uid="uid://dh6pxqob5ffdk"]
 
 [ext_resource type="Script" path="res://Scenes/Code/player.gd" id="1_2ir67"]
 [ext_resource type="Texture2D" uid="uid://lvl0e8i1efsa" path="res://temp_graphics/characterFall_v002.PNG" id="2_tj43i"]
@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://ba04bdqwe6w0" path="res://temp_graphics/character_v002.PNG" id="2_wwywf"]
 [ext_resource type="Texture2D" uid="uid://dke2qvh4obcqc" path="res://temp_graphics/characterWalkLeft_v002.PNG" id="3_osehy"]
 [ext_resource type="Texture2D" uid="uid://kwdfy6kvrva2" path="res://temp_graphics/characterJump_v002.PNG" id="4_8siii"]
-[ext_resource type="PackedScene" uid="uid://ko8ne3w71xdh" path="res://Scenes/gravity_class.tscn" id="6_ef145"]
-[ext_resource type="PackedScene" uid="uid://vk7rwt2dmxsl" path="res://Scenes/input_class.tscn" id="7_y1721"]
+[ext_resource type="Script" path="res://Scenes/Code/grounded_gravity_class.gd" id="9_88k7e"]
 [ext_resource type="PackedScene" uid="uid://cf486v3wj7e4l" path="res://Scenes/animation_control.tscn" id="9_m1ovq"]
+[ext_resource type="Script" path="res://Scenes/Code/grounded_input_class.gd" id="10_k88sk"]
+[ext_resource type="Script" path="res://Scenes/Code/swimming_gravity_class.gd" id="11_62gug"]
+[ext_resource type="Script" path="res://Scenes/Code/swimming_input_class.gd" id="12_btvoa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ieg47"]
 animations = [{
@@ -63,11 +65,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dx8mn"]
 size = Vector2(82, 313)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "input_control", "animation_control")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grounded_gravity_control", "grounded_input_control", "animation_control", "swimming_gravity_control", "swimming_input_control")]
 script = ExtResource("1_2ir67")
-gravity_control = NodePath("GravityClass")
-input_control = NodePath("input_class")
+grounded_gravity_control = NodePath("Ground_Gravity_Handle")
+grounded_input_control = NodePath("Ground_Input_Handle")
 animation_control = NodePath("animation_control")
+swimming_gravity_control = NodePath("Swim_Gravity_Handle")
+swimming_input_control = NodePath("Swim_Input_Handle")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -79,9 +83,17 @@ animation = &"Dash"
 position = Vector2(2, 1.5)
 shape = SubResource("RectangleShape2D_dx8mn")
 
-[node name="GravityClass" parent="." instance=ExtResource("6_ef145")]
-
-[node name="input_class" parent="." instance=ExtResource("7_y1721")]
-
 [node name="animation_control" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("9_m1ovq")]
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="Ground_Gravity_Handle" type="Node" parent="."]
+script = ExtResource("9_88k7e")
+
+[node name="Ground_Input_Handle" type="Node" parent="."]
+script = ExtResource("10_k88sk")
+
+[node name="Swim_Gravity_Handle" type="Node" parent="."]
+script = ExtResource("11_62gug")
+
+[node name="Swim_Input_Handle" type="Node" parent="."]
+script = ExtResource("12_btvoa")
