@@ -5,10 +5,16 @@ extends CharacterBody2D
 @export var animation_control: Animation_Handle
 @export var swimming_gravity_control: Swim_Gravity_Handle
 @export var swimming_input_control: Swim_Input_Handle
+@export var arrow_scene: PackedScene
 
 var is_underwater: bool = false
 
+func get_input():
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
+
 func _physics_process(delta: float) -> void:
+	get_input()
 	if self.is_underwater == false:
 		grounded_gravity_control.handle_gravity(self, delta)
 		grounded_input_control.movement_handle(self, grounded_input_control.x_movement)
@@ -44,3 +50,8 @@ func _on_area_2d_body_exited(body: Node2D):
 func _on_moon_beam_hit_box_body_entered(body: Node2D) -> void:
 	if body == self:
 		print("connect")
+		
+func shoot():
+	var b = arrow_scene.instantiate()
+	get_tree().root.add_child(b)
+	b.transform = $Muzzle.global_transform

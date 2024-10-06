@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuam2qc85r802"]
+
+[ext_resource type="Script" path="res://Scenes/Code/arrow.gd" id="1_e2k3c"]
+[ext_resource type="Texture2D" uid="uid://klrvtwbap55m" path="res://temp_graphics/arrow.png" id="1_j4ceu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvcjg"]
+size = Vector2(144, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlmeh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j4ceu")
+}],
+"loop": true,
+"name": &"arrow",
+"speed": 10.0
+}]
+
+[node name="Arrow" type="Area2D"]
+script = ExtResource("1_e2k3c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cvcjg")
+debug_color = Color(0.838015, 0.00120616, 0.927631, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rlmeh")
+animation = &"arrow"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

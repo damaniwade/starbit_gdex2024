@@ -23,13 +23,16 @@ func _physics_process(delta: float) -> void:
 		move_control.movement_handle(self, delta)
 	else:
 		current_point_pos += 1
-		
+		if current_point_pos > 1:
+			current_point_pos -= 2
+	
 	current_point = point_pos[current_point_pos]
 	
 	if current_point.x > position.x:
 		move_control.x_movement = Vector2.RIGHT
 	else:
 		move_control.x_movement = Vector2.LEFT
+	
 	anim_control.move_animation(velocity.x)
 	
 	
