@@ -14,7 +14,7 @@ var x_movement: float = 0.0
 var jumped: bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	x_movement = Input.get_axis("move_left", "move_right")
 
 func get_jump_input() -> bool:
@@ -33,7 +33,7 @@ func movement_handle(body: CharacterBody2D, delta: float) -> void:
 			$"../DashParticlesRight".emitting = true
 		else:
 			$"../DashParticlesLeft".emitting = true
-		
+
 		await(get_tree().create_timer(2)).timeout
 		is_dashing = false
 		dash_ability = true

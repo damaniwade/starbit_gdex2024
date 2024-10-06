@@ -2,7 +2,7 @@ class_name Swim_Input_Handle
 extends Node
 
 @export_subgroup("ControlVariables")
-@export var swim_speed: float = 200.0
+@export var swim_speed: float = 175.0
 @export var jump_velocity: float = -300.0
 @export var boat_speed: float = 600.0
 @export var dash_speed: float = 15000.0
@@ -16,7 +16,7 @@ var boat_unlocked: bool = false
 var x_movement: float = 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	x_movement = Input.get_axis("swim_left", "swim_right")
 	
 func get_jump_input() -> bool:

@@ -5,10 +5,16 @@ extends CharacterBody2D
 @export var animation_control: Animation_Handle
 @export var swimming_gravity_control: Swim_Gravity_Handle
 @export var swimming_input_control: Swim_Input_Handle
+@onready var health = get_node("HPNode")
 
 var is_underwater: bool = false
+var timer
+var time = 6
+var currentTime
+var overlapping: bool = false
 
 func _physics_process(delta: float) -> void:
+	$HPLabel.set_text(str(health.HP))
 	if self.is_underwater == false:
 		grounded_gravity_control.handle_gravity(self, delta)
 		grounded_input_control.movement_handle(self, grounded_input_control.x_movement)
@@ -25,18 +31,43 @@ func _physics_process(delta: float) -> void:
 		swimming_input_control.swimup_handle(self, swimming_input_control.get_jump_input())
 		swimming_input_control.boat_handle(self, swimming_input_control.x_movement)
 	
-	
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D):
-	if body == self:
+	if body.is_in_group("Player"):
 		self.is_underwater = true
 		$PurpleParticles.emitting = true
 		$PinkParticles.emitting = true
 		$BlueParticles.emitting = true
 func _on_area_2d_body_exited(body: Node2D):
-	if body == self:
+	if body.is_in_group("Player"):
 		self.is_underwater = false
 		$PurpleParticles.emitting = true
 		$PinkParticles.emitting = true
 		$BlueParticles.emitting = true
+<<<<<<< Updated upstream
+=======
+
+func _on_moon_beam_hit_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		overlapping = true
+		currentTime = time - 1
+		for i in time:
+			if overlapping == true:
+				await(get_tree().create_timer(1)).timeout
+				$Label.set_text(str(currentTime))
+				currentTime -= 1
+			else:
+				$Label.set_text(str(""))
+		await(get_tree().create_timer(1)).timeout
+		$Label.set_text(str(""))
+
+	if overlapping == true:
+		health.HP -= 2
+
+
+func _on_moon_beam_hit_box_body_exited(body):
+	if body.is_in_group("Player"):
+		overlapping = false
+		$Label.set_text(str(""))
+>>>>>>> Stashed changes
