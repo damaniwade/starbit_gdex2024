@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://crsyvguo1vuto"]
+[gd_scene load_steps=7 format=3 uid="uid://crsyvguo1vuto"]
 
 [ext_resource type="Texture2D" uid="uid://clp6qil3d5m3b" path="res://temp_graphics/temp_moon_bg.PNG" id="1_nmjqg"]
 [ext_resource type="PackedScene" uid="uid://dh6pxqob5ffdk" path="res://Scenes/player.tscn" id="2_xoonl"]
@@ -9,20 +9,14 @@
 size = Vector2(128.567, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow6sm"]
-size = Vector2(1500, 1500)
-
-[sub_resource type="QuadMesh" id="QuadMesh_exkyo"]
-size = Vector2(1500, 1500)
-
-[sub_resource type="Gradient" id="Gradient_plwrj"]
-colors = PackedColorArray(0.235294, 0, 0.321569, 0.458824, 0.282353, 1, 0.741176, 0.243137)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2vxdw"]
-gradient = SubResource("Gradient_plwrj")
-fill_from = Vector2(1, 0.56422)
-fill_to = Vector2(0.00458716, 0.995413)
+size = Vector2(559, 20)
 
 [node name="TestRoom" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(647, 365.5)
+scale = Vector2(2.08599, 1.9385)
+texture = ExtResource("1_nmjqg")
 
 [node name="MainGround" type="StaticBody2D" parent="."]
 position = Vector2(-301, 748)
@@ -36,7 +30,7 @@ position = Vector2(0.121521, 2)
 shape = SubResource("RectangleShape2D_6po50")
 
 [node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(2380, 570)
+position = Vector2(2374, 735)
 scale = Vector2(12.3437, 0.52)
 
 [node name="Ground" type="Sprite2D" parent="Platform"]
@@ -53,12 +47,6 @@ position = Vector2(105, 451)
 position = Vector2(85, -60)
 zoom = Vector2(0.7, 0.7)
 
-[node name="Background" type="Sprite2D" parent="Player"]
-z_index = -8
-position = Vector2(88, -56)
-scale = Vector2(2.98442, 2.8998)
-texture = ExtResource("1_nmjqg")
-
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
 [node name="Pause Screen" parent="PauseMenu" instance=ExtResource("4_d38vh")]
@@ -67,13 +55,9 @@ texture = ExtResource("1_nmjqg")
 position = Vector2(64, 1464)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Underwater_Area"]
-position = Vector2(1247, -139)
+position = Vector2(971, -422)
+scale = Vector2(1.65791, 38.9421)
 shape = SubResource("RectangleShape2D_ow6sm")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Underwater_Area"]
-position = Vector2(1247, -139)
-mesh = SubResource("QuadMesh_exkyo")
-texture = SubResource("GradientTexture2D_2vxdw")
 
 [connection signal="body_entered" from="Underwater_Area" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Underwater_Area" to="Player" method="_on_area_2d_body_exited"]

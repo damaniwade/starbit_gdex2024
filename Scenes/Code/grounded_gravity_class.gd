@@ -1,5 +1,5 @@
 #handling gravity control
-class_name Gravity_Handle
+class_name Ground_Gravity_Handle
 extends Node
 
 @export_subgroup("ControlVariables")
