@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6b1ilyv7yqdd"]
+
+[ext_resource type="Script" path="res://Scenes/Code/big_bunny_enemy.gd" id="1_10q1k"]
+[ext_resource type="Texture2D" uid="uid://dbv282bsuomd7" path="res://temp_graphics/Enemy/BigBunny.png" id="1_d6b24"]
+[ext_resource type="Texture2D" uid="uid://c6iv5dndj5cp6" path="res://temp_graphics/Enemy/BigBunnywalk1.png" id="2_cq4uf"]
+[ext_resource type="PackedScene" uid="uid://ko8ne3w71xdh" path="res://Scenes/gravity_class.tscn" id="2_jk5ci"]
+[ext_resource type="PackedScene" uid="uid://mxov0pv6l2hi" path="res://Scenes/enemy_animation_handle.tscn" id="4_qd80s"]
+[ext_resource type="Texture2D" uid="uid://dse3kxg6xjiar" path="res://temp_graphics/Enemy/BigBunnywalk2.png" id="4_y0ig5"]
+[ext_resource type="PackedScene" uid="uid://ciy6hbm3vfqi5" path="res://Scenes/enemy_movement.tscn" id="5_rht6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4diwe"]
+size = Vector2(314, 492)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h3yq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cq4uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_d6b24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y0ig5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_d6b24")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="BigBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control", "anim_control")]
+position = Vector2(216, 155)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_10q1k")
+gravity_control = NodePath("GravityClass")
+move_control = NodePath("Enemy Movement")
+anim_control = NodePath("Enemy Animation Handle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, -10)
+shape = SubResource("RectangleShape2D_4diwe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h3yq0")
+animation = &"Walk"
+frame = 1
+frame_progress = 0.784189
+
+[node name="GravityClass" parent="." instance=ExtResource("2_jk5ci")]
+
+[node name="Enemy Animation Handle" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("4_qd80s")]
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="Enemy Movement" parent="." instance=ExtResource("5_rht6w")]

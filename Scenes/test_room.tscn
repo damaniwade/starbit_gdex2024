@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crsyvguo1vuto"]
+[gd_scene load_steps=14 format=3 uid="uid://crsyvguo1vuto"]
 
 [ext_resource type="Texture2D" uid="uid://clp6qil3d5m3b" path="res://temp_graphics/temp_moon_bg.PNG" id="1_nmjqg"]
 [ext_resource type="PackedScene" uid="uid://dh6pxqob5ffdk" path="res://Scenes/player.tscn" id="2_xoonl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cv2fddhyfdp7e" path="res://Scenes/pause_screen.tscn" id="4_d38vh"]
 [ext_resource type="PackedScene" uid="uid://dg3f5oxkx5868" path="res://Scenes/moon_beam.tscn" id="5_7hcdl"]
 [ext_resource type="PackedScene" uid="uid://b5mmdx5infqme" path="res://Scenes/moon.tscn" id="6_xo1hu"]
+[ext_resource type="PackedScene" uid="uid://c6b1ilyv7yqdd" path="res://Scenes/big_bunny_enemy.tscn" id="7_yl5ju"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6po50"]
 size = Vector2(128.567, 130)
@@ -52,7 +53,7 @@ position = Vector2(-0.162024, 1.92312)
 shape = SubResource("RectangleShape2D_6po50")
 
 [node name="Player" parent="." instance=ExtResource("2_xoonl")]
-position = Vector2(105, 451)
+position = Vector2(105, -1395)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(85, -60)
@@ -96,6 +97,53 @@ debug_color = Color(0.994863, 0, 0.215105, 0.42)
 [node name="Moon" parent="." instance=ExtResource("6_xo1hu")]
 position = Vector2(754, 111)
 scale = Vector2(0.5, 0.5)
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(4590, 570)
+scale = Vector2(12.3437, 0.52)
+
+[node name="Ground" type="Sprite2D" parent="Platform2"]
+texture = ExtResource("3_qtw0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+position = Vector2(-0.162024, 1.92312)
+shape = SubResource("RectangleShape2D_6po50")
+
+[node name="Platform3" type="StaticBody2D" parent="."]
+position = Vector2(6355, 303)
+scale = Vector2(12.3437, 0.52)
+
+[node name="Ground" type="Sprite2D" parent="Platform3"]
+texture = ExtResource("3_qtw0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+position = Vector2(-0.162024, 1.92312)
+shape = SubResource("RectangleShape2D_6po50")
+
+[node name="BigBunnyEnemy" parent="." node_paths=PackedStringArray("end_points") instance=ExtResource("7_yl5ju")]
+position = Vector2(869, -1463)
+scale = Vector2(0.75, 0.75)
+end_points = NodePath("end points")
+metadata/_edit_group_ = true
+
+[node name="end points" type="Node2D" parent="BigBunnyEnemy"]
+
+[node name="left_end" type="Marker2D" parent="BigBunnyEnemy/end points"]
+position = Vector2(-576, 0)
+
+[node name="right_end" type="Marker2D" parent="BigBunnyEnemy/end points"]
+position = Vector2(224, 0)
+
+[node name="Platform4" type="StaticBody2D" parent="."]
+position = Vector2(6312, -952)
+scale = Vector2(191.541, -0.921418)
+
+[node name="Ground" type="Sprite2D" parent="Platform4"]
+texture = ExtResource("3_qtw0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
+position = Vector2(-0.162024, 1.92312)
+shape = SubResource("RectangleShape2D_6po50")
 
 [connection signal="body_entered" from="Underwater_Area" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Underwater_Area" to="Player" method="_on_area_2d_body_exited"]
