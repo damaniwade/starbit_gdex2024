@@ -40,3 +40,7 @@ func _on_area_2d_body_exited(body: Node2D):
 		$PurpleParticles.emitting = true
 		$PinkParticles.emitting = true
 		$BlueParticles.emitting = true
+
+func _on_moon_beam_hit_box_body_entered(body: Node2D) -> void:
+	if body == self:
+		print("connect")

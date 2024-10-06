@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://crsyvguo1vuto"]
+[gd_scene load_steps=13 format=3 uid="uid://crsyvguo1vuto"]
 
 [ext_resource type="Texture2D" uid="uid://clp6qil3d5m3b" path="res://temp_graphics/temp_moon_bg.PNG" id="1_nmjqg"]
 [ext_resource type="PackedScene" uid="uid://dh6pxqob5ffdk" path="res://Scenes/player.tscn" id="2_xoonl"]
 [ext_resource type="Texture2D" uid="uid://bvxt3cms7mubk" path="res://icon.svg" id="3_qtw0l"]
 [ext_resource type="PackedScene" uid="uid://cv2fddhyfdp7e" path="res://Scenes/pause_screen.tscn" id="4_d38vh"]
+[ext_resource type="PackedScene" uid="uid://dg3f5oxkx5868" path="res://Scenes/moon_beam.tscn" id="5_7hcdl"]
+[ext_resource type="PackedScene" uid="uid://b5mmdx5infqme" path="res://Scenes/moon.tscn" id="6_xo1hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6po50"]
 size = Vector2(128.567, 130)
@@ -21,6 +23,9 @@ colors = PackedColorArray(0.235294, 0, 0.321569, 0.458824, 0.282353, 1, 0.741176
 gradient = SubResource("Gradient_plwrj")
 fill_from = Vector2(1, 0.56422)
 fill_to = Vector2(0.00458716, 0.995413)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xb0q"]
+size = Vector2(160, 1178)
 
 [node name="TestRoom" type="Node2D"]
 
@@ -75,5 +80,23 @@ position = Vector2(1247, -139)
 mesh = SubResource("QuadMesh_exkyo")
 texture = SubResource("GradientTexture2D_2vxdw")
 
+[node name="MoonBeam" parent="." instance=ExtResource("5_7hcdl")]
+position = Vector2(-413, -195)
+
+[node name="MoonBeamHitBox" type="Area2D" parent="MoonBeam"]
+position = Vector2(413, 195)
+collision_layer = 5
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoonBeam/MoonBeamHitBox"]
+position = Vector2(-5, 291)
+shape = SubResource("RectangleShape2D_1xb0q")
+debug_color = Color(0.994863, 0, 0.215105, 0.42)
+
+[node name="Moon" parent="." instance=ExtResource("6_xo1hu")]
+position = Vector2(754, 111)
+scale = Vector2(0.5, 0.5)
+
 [connection signal="body_entered" from="Underwater_Area" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Underwater_Area" to="Player" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="MoonBeam/MoonBeamHitBox" to="Player" method="_on_moon_beam_hit_box_body_entered"]

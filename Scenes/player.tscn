@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dh6pxqob5ffdk"]
+[gd_scene load_steps=19 format=3 uid="uid://dh6pxqob5ffdk"]
 
 [ext_resource type="Script" path="res://Scenes/Code/player.gd" id="1_2ir67"]
 [ext_resource type="Texture2D" uid="uid://lvl0e8i1efsa" path="res://temp_graphics/characterFall_v002.PNG" id="2_tj43i"]
@@ -71,7 +71,17 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_5gpb5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="GDScript" id="GDScript_ictgi"]
+script/source = "extends Area2D
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rfh17"]
+radius = 48.0
+height = 308.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("grounded_gravity_control", "grounded_input_control", "animation_control", "swimming_gravity_control", "swimming_input_control")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_2ir67")
 grounded_gravity_control = NodePath("Ground_Gravity_Handle")
 grounded_input_control = NodePath("Ground_Input_Handle")
@@ -83,7 +93,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ieg47")
-animation = &"Dash"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 1.5)
@@ -187,3 +197,12 @@ initial_velocity_max = 212.12
 scale_amount_min = 11.1
 scale_amount_max = 21.21
 color_ramp = SubResource("Gradient_5gpb5")
+
+[node name="PlayerHitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = SubResource("GDScript_ictgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
+shape = SubResource("CapsuleShape2D_rfh17")
+debug_color = Color(0.520817, 0.574348, 7.70092e-07, 0.42)
