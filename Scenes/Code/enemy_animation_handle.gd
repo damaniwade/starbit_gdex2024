@@ -11,7 +11,7 @@ func anim_flip(direction: float) -> void:
 	if direction == 0:
 		return
 	
-	if direction > 0:
+	if direction < 0:
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true

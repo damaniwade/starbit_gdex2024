@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://37thtcqtndfs"]
 
-[ext_resource type="Script" path="res://Scenes/Code/big_bunny_move.gd" id="1_rfrkt"]
+[ext_resource type="Script" path="res://Scenes/Code/little_bunny_move.gd" id="1_18mbu"]
 [ext_resource type="Texture2D" uid="uid://4mc03h2ijpr3" path="res://temp_graphics/Enemy/littlebunny.png" id="2_gta83"]
 [ext_resource type="PackedScene" uid="uid://ko8ne3w71xdh" path="res://Scenes/gravity_class.tscn" id="3_rhhw1"]
 [ext_resource type="PackedScene" uid="uid://ciy6hbm3vfqi5" path="res://Scenes/enemy_movement.tscn" id="5_25ybg"]
-[ext_resource type="Script" path="res://Scenes/Code/little_enemy.gd" id="6_4ll1m"]
+[ext_resource type="Script" path="res://Scenes/Code/little_bunny_collide.gd" id="6_4ll1m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rpd5"]
 radius = 150.0
@@ -17,7 +17,7 @@ position = Vector2(216, 155)
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_rfrkt")
+script = ExtResource("1_18mbu")
 gravity_control = NodePath("GravityClass")
 move_control = NodePath("Enemy Movement")
 
