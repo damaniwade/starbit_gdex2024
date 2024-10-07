@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var move_control: Enemy_Move_Handle
 @export var anim_control: Enemy_Animation_Handle
 @export var end_points: Node
+@onready var health = get_node("HP")
 
 var point_amount: int
 var point_pos: Array[Vector2]
@@ -34,6 +35,9 @@ func _physics_process(delta: float) -> void:
 		move_control.x_movement = Vector2.LEFT
 	
 	anim_control.move_animation(velocity.x)
+	
+	if self.health.HP <= 0:
+		self.queue_free()
 	
 	
 	move_and_slide()

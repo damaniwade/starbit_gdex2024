@@ -36,7 +36,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwa0u"]
 size = Vector2(350, 520)
 
-[node name="BigBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control", "anim_control")]
+[node name="BigBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control", "anim_control") groups=["Enemy"]]
 position = Vector2(216, 155)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_10q1k")

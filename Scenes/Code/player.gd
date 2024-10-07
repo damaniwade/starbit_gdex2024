@@ -36,7 +36,9 @@ func _physics_process(delta: float) -> void:
 		swimming_input_control.swim_handle(self, swimming_input_control.x_movement)
 		swimming_input_control.swimup_handle(self, swimming_input_control.get_jump_input())
 		swimming_input_control.boat_handle(self, swimming_input_control.x_movement)
-	
+		
+	if self.health.HP <= 0:
+		get_tree().change_scene_to_file("res://Scenes/title_screen.tscn")
 	
 	move_and_slide()
 
@@ -77,5 +79,5 @@ func _on_moon_beam_hit_box_body_exited(body):
 		
 func shoot():
 	var b = arrow_scene.instantiate()
-	get_tree().root.add_child(b)
+	owner.add_child(b)
 	b.transform = $Muzzle.global_transform
