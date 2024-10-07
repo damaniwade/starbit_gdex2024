@@ -106,8 +106,6 @@ scale = Vector2(0.5, 0.5)
 
 [node name="BigBunnyEnemy" parent="." node_paths=PackedStringArray("end_points") instance=ExtResource("7_3leke")]
 position = Vector2(-974, 564)
-collision_layer = 1
-collision_mask = 1
 end_points = NodePath("../EndPointHolder/BigBunny")
 
 [node name="LittleBunnyEnemy" parent="." node_paths=PackedStringArray("end_points") instance=ExtResource("8_nueub")]

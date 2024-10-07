@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlco6shew6jya"]
+
+[ext_resource type="Script" path="res://Scenes/Code/boss_bunny_move.gd" id="1_axdm2"]
+[ext_resource type="Texture2D" uid="uid://dnbqkxwrwws5r" path="res://temp_graphics/Enemy/Boss.png" id="2_nu2w5"]
+[ext_resource type="PackedScene" uid="uid://ko8ne3w71xdh" path="res://Scenes/gravity_class.tscn" id="5_s8wiw"]
+[ext_resource type="PackedScene" uid="uid://mxov0pv6l2hi" path="res://Scenes/enemy_animation_handle.tscn" id="6_264od"]
+[ext_resource type="Script" path="res://Scenes/Code/boss_bunny_collide.gd" id="6_a2rf5"]
+[ext_resource type="PackedScene" uid="uid://ciy6hbm3vfqi5" path="res://Scenes/enemy_movement.tscn" id="7_8ecla"]
+[ext_resource type="Script" path="res://Scenes/Code/healthnode.gd" id="7_i6tu6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4diwe"]
+size = Vector2(250, 520)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwa0u"]
+size = Vector2(350, 520)
+
+[node name="BossBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control")]
+position = Vector2(216, 155)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_axdm2")
+gravity_control = NodePath("GravityClass")
+move_control = NodePath("Enemy Movement")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nu2w5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("RectangleShape2D_4diwe")
+
+[node name="GravityClass" parent="." instance=ExtResource("5_s8wiw")]
+
+[node name="Enemy Animation Handle" parent="." instance=ExtResource("6_264od")]
+
+[node name="Enemy Movement" parent="." instance=ExtResource("7_8ecla")]
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("6_a2rf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_bwa0u")
+
+[node name="HP" type="Node2D" parent="."]
+script = ExtResource("7_i6tu6")
+HP = 10
+
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="Hitbox" method="_on_body_exited"]
