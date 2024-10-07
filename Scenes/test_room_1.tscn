@@ -34,7 +34,7 @@ size = Vector2(160, 1178)
 a = Vector2(-100000, 0)
 b = Vector2(100000, 0)
 
-[node name="TestRoom" type="Node2D"]
+[node name="TestRoom2" type="Node2D"]
 
 [node name="MainGround" type="StaticBody2D" parent="."]
 position = Vector2(-301, 748)
@@ -110,8 +110,6 @@ end_points = NodePath("../EndPointHolder/BigBunny")
 
 [node name="LittleBunnyEnemy" parent="." node_paths=PackedStringArray("end_points") instance=ExtResource("8_nueub")]
 position = Vector2(1772, 447)
-collision_layer = 1
-collision_mask = 1
 end_points = NodePath("../EndPointHolder/LittleBunny")
 
 [node name="killPlane" type="Area2D" parent="."]

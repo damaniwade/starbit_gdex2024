@@ -42,19 +42,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _on_area_2d_body_entered(body: Node2D):
-	if body == self:
-		self.is_underwater = true
-		$PurpleParticles.emitting = true
-		$PinkParticles.emitting = true
-		$BlueParticles.emitting = true
-func _on_area_2d_body_exited(body: Node2D):
-	if body == self:
-		self.is_underwater = false
-		$PurpleParticles.emitting = true
-		$PinkParticles.emitting = true
-		$BlueParticles.emitting = true
-
 func _on_moon_beam_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		overlapping = true
@@ -81,3 +68,24 @@ func shoot():
 	var b = arrow_scene.instantiate()
 	owner.add_child(b)
 	b.transform = $Muzzle.global_transform
+
+func _on_underwater_area_body_entered(body):
+	if body == self:
+		self.is_underwater = true
+		$PurpleParticles.emitting = true
+		$PinkParticles.emitting = true
+		$BlueParticles.emitting = true
+
+func _on_underwater_area_2_body_entered(body):
+	if body == self:
+		self.is_underwater = true
+		$PurpleParticles.emitting = true
+		$PinkParticles.emitting = true
+		$BlueParticles.emitting = true
+
+func _on_underwater_area_2_body_exited(body):
+	if body == self:
+		self.is_underwater = false
+		$PurpleParticles.emitting = true
+		$PinkParticles.emitting = true
+		$BlueParticles.emitting = true

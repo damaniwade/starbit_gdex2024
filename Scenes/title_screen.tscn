@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxf8m8y71cdnq"]
+[gd_scene load_steps=4 format=3 uid="uid://daori7bih030y"]
 
 [ext_resource type="Script" path="res://Scenes/Code/title_screen.gd" id="1_tp216"]
 [ext_resource type="Texture2D" uid="uid://bhhsxc0fuq7kn" path="res://temp_graphics/moon_title.png" id="2_aa2b0"]
