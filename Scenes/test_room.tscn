@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://crsyvguo1vuto"]
+[gd_scene load_steps=17 format=3 uid="uid://crsyvguo1vuto"]
 
 [ext_resource type="PackedScene" uid="uid://37thtcqtndfs" path="res://Scenes/little_bunny_enemy.tscn" id="1_bsm4q"]
 [ext_resource type="Texture2D" uid="uid://clp6qil3d5m3b" path="res://temp_graphics/temp_moon_bg.PNG" id="1_nmjqg"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bvxt3cms7mubk" path="res://icon.svg" id="3_qtw0l"]
 [ext_resource type="PackedScene" uid="uid://cv2fddhyfdp7e" path="res://Scenes/pause_screen.tscn" id="4_d38vh"]
 [ext_resource type="PackedScene" uid="uid://dg3f5oxkx5868" path="res://Scenes/moon_beam.tscn" id="5_7hcdl"]
-[ext_resource type="PackedScene" uid="uid://cuam2qc85r802" path="res://Scenes/arrow.tscn" id="6_6bbh8"]
 [ext_resource type="PackedScene" uid="uid://b5mmdx5infqme" path="res://Scenes/moon.tscn" id="6_xo1hu"]
 [ext_resource type="PackedScene" uid="uid://c6b1ilyv7yqdd" path="res://Scenes/big_bunny_enemy.tscn" id="7_yl5ju"]
 
@@ -98,7 +97,6 @@ shape = SubResource("RectangleShape2D_6po50")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_xoonl")]
 position = Vector2(178, -1449)
-arrow_scene = ExtResource("6_6bbh8")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(12, -6)

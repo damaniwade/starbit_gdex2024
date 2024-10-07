@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://csgsfcvap4mxb"]
+[gd_scene load_steps=21 format=3 uid="uid://csgsfcvap4mxb"]
 
 [ext_resource type="PackedScene" uid="uid://c6b1ilyv7yqdd" path="res://Scenes/big_bunny_enemy.tscn" id="1_3jtw5"]
 [ext_resource type="PackedScene" uid="uid://37thtcqtndfs" path="res://Scenes/little_bunny_enemy.tscn" id="2_fy52k"]
@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://k6l8chf452go" path="res://Scenes/finish.tscn" id="8_nd48w"]
 [ext_resource type="PackedScene" uid="uid://dlco6shew6jya" path="res://Scenes/boss_enemy.tscn" id="9_f3wfd"]
 [ext_resource type="Texture2D" uid="uid://c2l0e3eutnlhg" path="res://temp_graphics/NPC/orion.png" id="10_el167"]
-[ext_resource type="Texture2D" uid="uid://hhut75hcahpc" path="res://temp_graphics/pexels-felixmittermeier-956981.jpg" id="11_16kuw"]
+[ext_resource type="Texture2D" uid="uid://nsev85543j8p" path="res://temp_graphics/prettyyy.png" id="11_fr8sq"]
 [ext_resource type="Texture2D" uid="uid://r8cd7yqlrs7j" path="res://temp_graphics/Untitled_Artwork.png" id="12_fgtvm"]
+[ext_resource type="Script" path="res://Scenes/Code/kill_plane.gd" id="13_hg38p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iko88"]
 size = Vector2(160, 1178)
@@ -32,6 +33,10 @@ colors = PackedColorArray(0.235294, 0, 0.321569, 0.458824, 0.282353, 1, 0.741176
 gradient = SubResource("Gradient_plwrj")
 fill_from = Vector2(1, 0.56422)
 fill_to = Vector2(0.00458716, 0.995413)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dg223"]
+a = Vector2(-120000, 0)
+b = Vector2(120000, 10)
 
 [node name="Level 1" type="Node2D"]
 
@@ -67,11 +72,7 @@ position = Vector2(-1670, 722)
 position = Vector2(1662, 686)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_gxwql")]
-<<<<<<< Updated upstream
-position = Vector2(776, 130)
-=======
 position = Vector2(177, 50)
->>>>>>> Stashed changes
 scale = Vector2(0.9, 0.9)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -403,7 +404,7 @@ scale = Vector2(0.418471, 0.481007)
 position = Vector2(1150, 290)
 
 [node name="Marker2D2" type="Marker2D" parent="BossBunnyEnemy/Node2D2"]
-position = Vector2(-1320, 344)
+position = Vector2(-375.995, 272.002)
 
 [node name="Platform21" type="StaticBody2D" parent="."]
 position = Vector2(21285, 2634)
@@ -450,8 +451,8 @@ motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/background"]
 position = Vector2(4.03089, 411.892)
-scale = Vector2(0.00184759, 0.415003)
-texture = ExtResource("11_16kuw")
+scale = Vector2(0.00699721, 1.44672)
+texture = ExtResource("11_fr8sq")
 
 [node name="moon" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(3371, 1163)
@@ -461,6 +462,13 @@ motion_scale = Vector2(0.2, 0.2)
 position = Vector2(248, 1389)
 scale = Vector2(6, 5.97)
 texture = ExtResource("12_fgtvm")
+
+[node name="KillPlane" type="Area2D" parent="."]
+position = Vector2(10805, 6854)
+script = ExtResource("13_hg38p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane"]
+shape = SubResource("SegmentShape2D_dg223")
 
 [connection signal="body_entered" from="MoonBeam2/MoonBeamHitBox" to="Player" method="_on_moon_beam_hit_box_body_entered"]
 [connection signal="body_exited" from="MoonBeam2/MoonBeamHitBox" to="Player" method="_on_moon_beam_hit_box_body_exited"]
@@ -473,3 +481,4 @@ texture = ExtResource("12_fgtvm")
 [connection signal="body_exited" from="MoonBeam4/MoonBeamHitBox" to="Player" method="_on_moon_beam_hit_box_body_exited"]
 [connection signal="body_entered" from="MoonBeam5/MoonBeamHitBox" to="Player" method="_on_moon_beam_hit_box_body_entered"]
 [connection signal="body_exited" from="MoonBeam5/MoonBeamHitBox" to="Player" method="_on_moon_beam_hit_box_body_exited"]
+[connection signal="body_entered" from="KillPlane" to="KillPlane" method="_on_body_entered"]
