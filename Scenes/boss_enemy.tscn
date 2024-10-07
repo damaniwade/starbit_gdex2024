@@ -14,7 +14,7 @@ size = Vector2(250, 520)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwa0u"]
 size = Vector2(350, 520)
 
-[node name="BossBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control")]
+[node name="BossBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control") groups=["Enemy"]]
 position = Vector2(216, 155)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_axdm2")

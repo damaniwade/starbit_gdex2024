@@ -13,7 +13,7 @@ radius = 150.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_8p7lk"]
 radius = 250.0
 
-[node name="LittleBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control")]
+[node name="LittleBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control") groups=["Enemy"]]
 position = Vector2(216, 155)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_18mbu")
