@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg3f5oxkx5868"]
+
+[ext_resource type="Script" path="res://Scenes/Code/moon_beam.gd" id="1_3a8yw"]
+[ext_resource type="Texture2D" uid="uid://blxq2pi8cajo2" path="res://temp_graphics/beam.PNG" id="2_dyyvj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfxbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dyyvj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxxgp"]
+size = Vector2(152, 1170)
+
+[node name="MoonBeam" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_3a8yw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5.5, 290.5)
+scale = Vector2(1.41228, 1.67564)
+sprite_frames = SubResource("SpriteFrames_pfxbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 291)
+shape = SubResource("RectangleShape2D_rxxgp")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mxov0pv6l2hi"]
+
+[ext_resource type="Script" path="res://Scenes/Code/enemy_animation_handle.gd" id="1_5ed3f"]
+
+[node name="Enemy Animation Handle" type="Node"]
+script = ExtResource("1_5ed3f")
