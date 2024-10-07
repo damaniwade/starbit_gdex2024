@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://iiu5h7ou6qnt"]
+
+[ext_resource type="AudioStream" uid="uid://cncw0yhgxvak0" path="res://Sounds/One Man Symphony - Stealth Theme 02.mp3" id="1_f5fki"]
+
+[node name="bg_music" type="AudioStreamPlayer"]
+stream = ExtResource("1_f5fki")
+autoplay = true
