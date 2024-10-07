@@ -1,15 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6b1ilyv7yqdd"]
+[gd_scene load_steps=12 format=3 uid="uid://c6b1ilyv7yqdd"]
 
-[ext_resource type="Script" path="res://Scenes/Code/big_bunny_enemy.gd" id="1_10q1k"]
+[ext_resource type="Script" path="res://Scenes/Code/big_bunny_move.gd" id="1_10q1k"]
 [ext_resource type="Texture2D" uid="uid://dbv282bsuomd7" path="res://temp_graphics/Enemy/BigBunny.png" id="1_d6b24"]
 [ext_resource type="Texture2D" uid="uid://c6iv5dndj5cp6" path="res://temp_graphics/Enemy/BigBunnywalk1.png" id="2_cq4uf"]
 [ext_resource type="PackedScene" uid="uid://ko8ne3w71xdh" path="res://Scenes/gravity_class.tscn" id="2_jk5ci"]
 [ext_resource type="PackedScene" uid="uid://mxov0pv6l2hi" path="res://Scenes/enemy_animation_handle.tscn" id="4_qd80s"]
 [ext_resource type="Texture2D" uid="uid://dse3kxg6xjiar" path="res://temp_graphics/Enemy/BigBunnywalk2.png" id="4_y0ig5"]
 [ext_resource type="PackedScene" uid="uid://ciy6hbm3vfqi5" path="res://Scenes/enemy_movement.tscn" id="5_rht6w"]
+[ext_resource type="Script" path="res://Scenes/Code/big_bunny_collide.gd" id="8_0e22r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4diwe"]
-size = Vector2(314, 492)
+size = Vector2(250, 520)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h3yq0"]
 animations = [{
@@ -31,6 +32,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwa0u"]
+size = Vector2(350, 520)
+
 [node name="BigBunnyEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_control", "move_control", "anim_control")]
 position = Vector2(216, 155)
 scale = Vector2(0.5, 0.5)
@@ -40,7 +44,7 @@ move_control = NodePath("Enemy Movement")
 anim_control = NodePath("Enemy Animation Handle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(13, -10)
+z_index = 1
 shape = SubResource("RectangleShape2D_4diwe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -55,3 +59,12 @@ frame_progress = 0.784189
 sprite = NodePath("../AnimatedSprite2D")
 
 [node name="Enemy Movement" parent="." instance=ExtResource("5_rht6w")]
+
+[node name="BigBunny" type="Area2D" parent="."]
+script = ExtResource("8_0e22r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBunny"]
+shape = SubResource("RectangleShape2D_bwa0u")
+
+[connection signal="body_entered" from="BigBunny" to="BigBunny" method="_on_body_entered"]
+[connection signal="body_exited" from="BigBunny" to="BigBunny" method="_on_body_exited"]

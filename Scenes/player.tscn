@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dh6pxqob5ffdk"]
+[gd_scene load_steps=19 format=3 uid="uid://dh6pxqob5ffdk"]
 
 [ext_resource type="Script" path="res://Scenes/Code/player.gd" id="1_2ir67"]
 [ext_resource type="Texture2D" uid="uid://lvl0e8i1efsa" path="res://temp_graphics/characterFall_v002.PNG" id="2_tj43i"]
 [ext_resource type="Texture2D" uid="uid://dligdxbqmx7v8" path="res://temp_graphics/characterIdle2_v002.PNG" id="2_tuek8"]
 [ext_resource type="Texture2D" uid="uid://bcug1o34mgrwo" path="res://temp_graphics/characterDash_v002.PNG" id="2_wec2r"]
 [ext_resource type="Texture2D" uid="uid://ba04bdqwe6w0" path="res://temp_graphics/character_v002.PNG" id="2_wwywf"]
-[ext_resource type="PackedScene" uid="uid://cuam2qc85r802" path="res://Scenes/arrow.tscn" id="2_yanb3"]
 [ext_resource type="Texture2D" uid="uid://dke2qvh4obcqc" path="res://temp_graphics/characterWalkLeft_v002.PNG" id="3_osehy"]
 [ext_resource type="Texture2D" uid="uid://kwdfy6kvrva2" path="res://temp_graphics/characterJump_v002.PNG" id="4_8siii"]
 [ext_resource type="Script" path="res://Scenes/Code/grounded_gravity_class.gd" id="9_88k7e"]
@@ -13,6 +12,7 @@
 [ext_resource type="Script" path="res://Scenes/Code/grounded_input_class.gd" id="10_k88sk"]
 [ext_resource type="Script" path="res://Scenes/Code/swimming_gravity_class.gd" id="11_62gug"]
 [ext_resource type="Script" path="res://Scenes/Code/swimming_input_class.gd" id="12_btvoa"]
+[ext_resource type="Script" path="res://Scenes/Code/healthnode.gd" id="13_s3oxo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ieg47"]
 animations = [{
@@ -72,10 +72,6 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_5gpb5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GDScript" id="GDScript_ictgi"]
-script/source = "extends Area2D
-"
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rfh17"]
 radius = 48.0
 height = 308.0
@@ -89,7 +85,6 @@ grounded_input_control = NodePath("Ground_Input_Handle")
 animation_control = NodePath("animation_control")
 swimming_gravity_control = NodePath("Swim_Gravity_Handle")
 swimming_input_control = NodePath("Swim_Input_Handle")
-arrow_scene = ExtResource("2_yanb3")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -200,14 +195,24 @@ scale_amount_min = 11.1
 scale_amount_max = 21.21
 color_ramp = SubResource("Gradient_5gpb5")
 
-[node name="PlayerHitBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 4
-script = SubResource("GDScript_ictgi")
+[node name="HPNode" type="Node" parent="."]
+script = ExtResource("13_s3oxo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["PlayerCollider"]]
 shape = SubResource("CapsuleShape2D_rfh17")
 debug_color = Color(0.520817, 0.574348, 7.70092e-07, 0.42)
 
-[node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(55, 0)
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -256.0
+offset_right = 21.0
+offset_bottom = -160.0
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 1
+
+[node name="HPLabel" type="Label" parent="."]
+offset_left = 58.0
+offset_top = -94.0
+offset_right = 98.0
+offset_bottom = -25.0
+theme_override_font_sizes/font_size = 50
