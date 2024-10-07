@@ -63,7 +63,7 @@ position = Vector2(-1670, 722)
 position = Vector2(1662, 686)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("4_gxwql")]
-position = Vector2(15165, 3254)
+position = Vector2(776, 130)
 scale = Vector2(0.9, 0.9)
 arrow_scene = SubResource("PackedScene_jtqqv")
 
